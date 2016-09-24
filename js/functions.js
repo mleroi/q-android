@@ -24,10 +24,102 @@ define([
     'root/config',
     'theme/js/moment.min',
     'theme/js/velocity.min',
+	'theme/photoswipe/photoswipe.min',
+	'theme/photoswipe/photoswipe-ui-default.min',
     'theme/js/jquery.fitvids'
-    ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
+    ], function($,App,Storage,TemplateTags,Config,Moment,Velocity,PhotoSwipe,PhotoSwipeUI_Default) {
 
+	/***********************************
+	 * START PHOTOSWIPE 
+	 */
+	
+	var photoswipe_element = $( '.pswp' )[0];
+	var photoswipe_instance = null;
+	var img_dragging = false;
 
+	$( "#app-layout" ).on( "touchstart", ".single-content img", function() {
+		img_dragging = false;
+	} );
+
+	$( "#app-layout" ).on( "touchmove", ".single-content img", function() {
+		img_dragging = true;
+	});
+
+	/**
+	 * Opens the given image (or list of images) with PhotoSwipe
+	 */
+	function open_with_photoswipe( $images ) {
+		
+		var photoswipe_items = [];
+		
+		//For each image, create the corresponding PhotoSwipe item by retrieving
+		//the full size information in data attributes set on server side:
+		$images.each( function() {
+			var $image = $( this );
+			
+			//Retrieve image caption if any:
+			var $caption = $( this ).closest('figure,div.wp-caption').find( '.wp-caption-text' );
+			
+			//Add PhotoSwipe item corresponding to
+			photoswipe_items.push({
+				src: $image.data( 'full-img' ),
+				w: $image.data( 'width' ),
+				h: $image.data( 'height' ),
+				title: $caption.length ? $caption.text() : ''
+			});
+		} );
+
+		//Lots of PhotoSwipe options can be found here for customization:
+		//http://photoswipe.com/documentation/options.html
+		var photoswipe_options = {
+			index: 0, // start at first slide
+			shareEl: false //don't display Share element
+		};
+		
+		//Open the given images with PhotoSwipe:
+		photoswipe_instance = new PhotoSwipe( photoswipe_element, PhotoSwipeUI_Default, photoswipe_items, photoswipe_options);
+		photoswipe_instance.init();
+	}
+	
+	$( "#app-layout" ).on( "touchend", ".single-content img", function() {
+
+		//Don't open image if currently dragging it:
+		if ( img_dragging ) {
+			return;
+		}
+
+		//Detect if the image belongs to a gallery
+		var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
+
+		if ( is_gallery ) {
+			//Open PhotoSwipe for all images of the gallery:
+			open_with_photoswipe( $( this ).closest( 'figure' ).siblings().andSelf().find( 'img' ) );
+		} else {
+			//Open PhotoSwipe for the image we just touched:
+			open_with_photoswipe( $( this ) );
+		}
+
+	});
+	
+	/**
+	 * Prepare gallery images when a post or a page is displayed in the app
+	 */
+	App.on( 'screen:showed', function( current_screen, view ) {
+		if ( current_screen.screen_type === "single" || current_screen.screen_type === "page" ) {
+
+			//First hide all gallery images
+			$( '.gallery figure' ).hide();
+
+			//Then display only the first image of each gallery:
+			$( '.gallery figure:first-child' ).show(); 
+
+		}
+	} );
+	
+	/**
+	 * END PHOTOSWIPE 
+	 ***********************************/
+	
     /*
      * App's parameters
      */
@@ -113,12 +205,17 @@ define([
         return template_args;
         
     } );
+<<<<<<< 3818239606f69a494680a100777c0ac37ec01968
     
 	//@desc Memorize the last history action so that we can decide what to do when
 	//doing "single to single" transitions:
 	var last_history_action = '';
 	
     // @desc Catch if we're going to a single and coming from a single (it is the case when clicking on a post in the last posts widget at the bottom of a post)
+=======
+	
+	// @desc Catch if we're going to a single and coming from a single (it is the case when clicking on a post in the last posts widget at the bottom of a post)
+>>>>>>> Handle images and galleries with PhotoSwipe
     // Update properly the history stack
     App.filter( 'make-history', function( history_action, history_stack, queried_screen, current_screen, previous_screen ) {
 
@@ -137,6 +234,7 @@ define([
 
     });
 
+<<<<<<< 3818239606f69a494680a100777c0ac37ec01968
 	// @desc Handle "single to single" transition:
 	App.filter( 'transition-direction', function( transition, current_screen, next_screen ){
 		
@@ -163,6 +261,8 @@ define([
         return transition;
     });
 
+=======
+>>>>>>> Handle images and galleries with PhotoSwipe
     /*
      * Actions
      */
@@ -288,7 +388,7 @@ define([
         $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
         
 	});
-     
+	 
     // @desc Refresh process ends
     // @param result
 	App.on('refresh:end',function(result){
