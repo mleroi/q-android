@@ -48,8 +48,10 @@ define([
 	/**
 	 * Opens the given image (or list of images) with PhotoSwipe
 	 */
-	function open_with_photoswipe( $images ) {
+	function open_with_photoswipe( $images, index ) {
 		
+		index = index || 0;
+
 		var photoswipe_items = [];
 		
 		//For each image, create the corresponding PhotoSwipe item by retrieving
@@ -58,7 +60,7 @@ define([
 			var $image = $( this );
 			
 			//Retrieve image caption if any:
-			var $caption = $( this ).closest('figure,div.wp-caption').find( '.wp-caption-text' );
+			var $caption = $( this ).closest('.gallery-item,.wp-caption').find( '.wp-caption-text' );
 			
 			//Add PhotoSwipe item corresponding to
 			photoswipe_items.push({
@@ -72,7 +74,7 @@ define([
 		//Lots of PhotoSwipe options can be found here for customization:
 		//http://photoswipe.com/documentation/options.html
 		var photoswipe_options = {
-			index: 0, // start at first slide
+			index: index, // start at first slide
 			shareEl: false //don't display Share element
 		};
 		
@@ -93,7 +95,7 @@ define([
 
 		if ( is_gallery ) {
 			//Open PhotoSwipe for all images of the gallery:
-			open_with_photoswipe( $( this ).closest( 'figure' ).siblings().andSelf().find( 'img' ) );
+			open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
 		} else {
 			//Open PhotoSwipe for the image we just touched:
 			open_with_photoswipe( $( this ) );
@@ -102,16 +104,19 @@ define([
 	});
 	
 	/**
-	 * Prepare gallery images when a post or a page is displayed in the app
+	 * Prepare gallery images when a post or a page is displayed in the app:
+	 * only show first gallery image thumbnail in post content by default.
+	 * 
+	 * If you want to show all gallery image thumbnail, just comment this 'screen:showed' block.
 	 */
 	App.on( 'screen:showed', function( current_screen, view ) {
 		if ( current_screen.screen_type === "single" || current_screen.screen_type === "page" ) {
 
 			//First hide all gallery images
-			$( '.gallery figure' ).hide();
+			$( '.gallery .gallery-item' ).hide();
 
 			//Then display only the first image of each gallery:
-			$( '.gallery figure:first-child' ).show(); 
+			$( '.gallery .gallery-item:first-child' ).show(); 
 
 		}
 	} );
