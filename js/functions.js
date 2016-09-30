@@ -107,7 +107,7 @@ define([
 	 * Prepare gallery images when a post or a page is displayed in the app:
 	 * only show first gallery image thumbnail in post content by default.
 	 * 
-	 * If you want to show all gallery image thumbnail, just comment this 'screen:showed' block.
+	 * If you want to display all gallery images thumbnails, just comment this 'screen:showed' block.
 	 */
 	App.on( 'screen:showed', function( current_screen, view ) {
 		if ( current_screen.screen_type === "single" || current_screen.screen_type === "page" ) {
