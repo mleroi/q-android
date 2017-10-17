@@ -1,0 +1,67 @@
+<div id="content" class="content list-template">
+
+    <div class="search-container">
+        <form id="search-form">
+            <input value="<%= search_string %>" id="search-field" class="search-field" type="search" />
+            <button id="search-button" class="search-button" type="submit">Search</button>
+        </form>
+    </div>
+    
+    <style>
+        /* Move this to css/post-list.css */
+        
+        /*
+         * Search
+         */
+        .search-container {
+            padding: 20px 5px 20px 5px;
+            text-align: center;
+        }
+        .search-field {
+            width: 60%;
+            height: 30px;
+            line-height: 20px;
+            font-size: 16px;
+            margin-right: 10px;
+            padding: 2px;
+            border: 1px solid;
+        }
+        .search-button {
+            padding: 4px;
+            line-height: 20px;
+            font-size: 16px;    
+        }
+    </style>
+
+    <% if(posts.length){ %>
+
+        <% _.each( posts, function( post ){ %>
+
+            <div class="content-item has-ripple-feedback">
+
+                <a href="<%= TemplateTags.getPostLink(post.id) %>">
+
+                    <% if ( post.subhead ) { %>
+
+                        <div class="subhead"><%= post.subhead %></div>
+
+                    <% } %>
+
+                    <h2><span><%= post.title %></span></h2>
+
+                    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+
+                        <img class="content-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
+
+                    <% } %>	
+
+                </a>
+            </div>
+
+        <% }); %>
+
+    <% }else{ %>
+        <div class='content-message'>No post found</div>
+    <% } %>
+
+</div>
