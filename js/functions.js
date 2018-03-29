@@ -27,6 +27,49 @@ define([
     'theme/js/jquery.fitvids'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
+
+    App.addCustomRoute( 'home', 'home' ); //Create home route associated with home.html template
+
+    App.filter( 'default-route', function( default_route ) {
+	default_route = 'home';
+	return default_route ;
+    } );
+
+    App.filter( 'template-args', function( template_args, view_type, view_template ) {
+	if ( view_template === 'home') { //Don't need .html here
+
+		//Get blog posts from our "blog" component and keep only 3 of them to display in template:
+		template_args.blog_posts = _.last( TemplateTags.getComponent('blog').view_data.posts.toJSON(), 3 );
+
+		//Same with tutorials posts, from our "tutorials" component:
+		template_args.tutorials_posts = _.last( TemplateTags.getComponent('tutorials').view_data.posts.toJSON(), 3 );
+
+		//Now "blog_posts" and "tutorials_posts" variables are available in our home.html template :)
+	}
+	return template_args;
+    } );
+
+    App.filter( 'make-history', function( history_action, history_stack, queried_screen, current_screen, previous_screen ) {
+	//If coming from "home" screen and going to a "single" screen, consider it as a "push" in app history:
+	if( current_screen.item_id === 'home' && queried_screen.screen_type === 'single' ) {
+		history_action = 'push';
+	}
+	return history_action;
+    });
+
+    App.filter( 'transition-direction', function ( direction, current_screen, queried_screen ) {
+	//If coming from "home" screen and going to a "single" screen, consider it as a "next screen" transition:
+	if ( current_screen.item_id === 'home' && queried_screen.screen_type === 'single' ) {
+		direction = 'next-screen';
+	} 
+	//If coming back from a "single" screen to the "home" screen, consider it as a "previous screen" transition:
+	else if ( current_screen.screen_type === 'single' && queried_screen.item_id === 'home' ) {
+		direction = 'previous-screen';
+	}
+	return direction;
+    } );
+
+
     /*
      * App's parameters
      */
