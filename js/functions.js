@@ -28,6 +28,43 @@ define([
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
 
+    $( '#app-layout' ).on( 'click', '.forgotten-password', function ( e ) {
+        e.preventDefault();
+
+        //Livequery data that will be passed to server:
+        var query_data = {
+            jgp_action: 'forgotten_password',
+            user_login: 'user-email@test.com', //Email or login coming from input
+        };
+
+        //Define livequery options:
+        var options = {
+            auto_interpret_result: false, //This is to tell WPAK that you're doing your own custom query
+            success: function ( answer ) { //The meta update webservice call went ok
+                if ( answer.hasOwnProperty( 'jgp_result' ) ) {
+                    if ( answer.jgp_result.ok === 1 ) {
+                        //Forgotten password process went ok: 
+                        console.log( 'Forgotten password process successfull' );
+                    } else {
+                        //Error during forgotten password process (maybe non existent user): 
+                        console.log( 'Forgotten password process error: ', answer.jgp_result.error );
+                    }
+                } else {
+                    //Wrong answer format
+                    console.log( 'Forgotten password process error: wrong answser format' );
+                }
+            },
+            error: function ( error ) {
+                //Ajax failed: probably network problem or PHP error
+                console.log( 'Network error' );
+            }
+        };
+
+        //Send our meta update query to the server:
+        App.liveQuery( query_data, options );
+
+    } );
+
     /*
      * App's parameters
      */
