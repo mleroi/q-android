@@ -24,9 +24,19 @@ define([
     'root/config',
     'theme/js/moment.min',
     'theme/js/velocity.min',
-    'theme/js/jquery.fitvids'
+    'theme/js/jquery.fitvids',
+    'theme/js/cf7'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
+    App.on( 'screen:showed', function( current_screen, view ) {
+        $( 'div.wpcf7 > form' ).each( function() {
+            var $form = $( this );
+            wpcf7.initForm( $form );
+            if ( wpcf7.cached ) {
+                wpcf7.refill( $form );
+            }
+        } );
+    } );
 
     /*
      * App's parameters
