@@ -27,6 +27,93 @@ define([
     'theme/js/jquery.fitvids'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
+    var term_list_page_id = 98;
+
+    App.filter( 'template', function( template, current_screen ) {
+        if ( current_screen.item_id === term_list_page_id ) {
+            template = 'page-my-taxonomy-terms';
+        }
+        return template;
+    } );
+
+    //Init current search
+    var current_search = { category: '' };
+
+    //Handle click on "buschar" button:
+    $('#app-layout').on('click','.terms-to-posts',function(e){
+
+        e.preventDefault();
+
+        //Set taxonomy term slug form clicked link:
+        current_search.category = $(this).data('term-slug');
+
+        //Activate refresh button while we load data from server
+        $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
+        
+        //Update our "search" component with our new category value:
+        App.refreshComponent({
+            component_id: 'search',
+            success: function( answer, update_results ) {
+
+                //Component updated ok. Navigate to it:
+                App.navigate('component-search');
+
+                //Deactivate refresh button:
+                $("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
+
+            },
+            error: function( error ) {
+                //Maybe do something if filtering went wrong.
+                //Note that "No network" error events are triggered automatically by core
+                
+                //Deactivate refresh button:
+                $("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
+            }
+        });
+
+    });
+
+    //Add our search params to web services that retrieve our search post list.
+    App.filter( 'web-service-params', function( web_service_params, type ) {
+
+        var current_component_id = App.getCurrentComponentId();
+
+        //If we are refreshing the "search" component (or asking "Get more posts" on it):
+        if( web_service_params.wpak_component_slug === 'search' || ( type === 'get-more-of-component' && current_component_id === 'search' ) ) {
+
+            //Add search params to the data sent to web service:
+            web_service_params.search_filters = current_search;
+            //Those params will be retrieved with WpakWebServiceContext::getClientAppParam( 'search_filters' )
+            //on server side.
+        }
+
+        return web_service_params;
+    } );
+
+    //Adjust app history for our search screen:
+    App.filter( 'make-history', function( history_action, history_stack, queried_screen, current_screen, previous_screen ) {
+
+        //If coming from our "term list" screen and going to the "search" screen, consider it as a "push" in app history:
+        if( current_screen.item_id === term_list_page_id && queried_screen.component_id === 'search' ) {
+            history_action = 'push';
+        }
+
+        return history_action;
+    });
+
+    //Adjust app screen transition for our search screen:
+    App.filter( 'transition-direction', function ( direction, current_screen, queried_screen ) {
+        //If coming from "term list" screen and going to a "search" screen, consider it as a "next screen" transition:
+        if ( current_screen.item_id == term_list_page_id && queried_screen.component_id === 'search' ) {
+            direction = 'next-screen';
+        } 
+        //If coming back from "search" screen to the "term list" screen, consider it as a "previous screen" transition:
+        else if ( current_screen.component_id === 'search' && queried_screen.item_id == term_list_page_id ) {
+            direction = 'previous-screen';
+        }
+        return direction;
+    } );
+
 
     /*
      * App's parameters

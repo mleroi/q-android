@@ -1,0 +1,23 @@
+<div id="content" class="content single-template">
+
+    <div class="post-title">
+
+        <h1>
+            <%= post.title %>
+        </h1>
+
+    </div>
+            
+    <div id="single-content" class="single-content">
+
+            <% if ( post.terms && post.terms.length ) { %>
+                <ul>
+                <% _.each( post.terms, function( term ){ %>
+                    <li><a href="#" data-term-slug="<%= term.slug %>" class="terms-to-posts"><%= term.name %></a></li>
+                <% }); %>
+                </ul>
+            <% } %>
+
+    </div>
+        
+</div>
