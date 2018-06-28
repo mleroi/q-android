@@ -13,7 +13,7 @@
             <% if ( post.terms && post.terms.length ) { %>
                 <ul>
                 <% _.each( post.terms, function( term ){ %>
-                    <li><a href="#" data-term-slug="<%= term.slug %>" class="terms-to-posts"><%= term.name %></a></li>
+                    <li><a href="#" data-term-slug="<%= term.slug %>" class="terms-to-posts q-theme-prevent-navigation"><%= term.name %></a></li>
                 <% }); %>
                 </ul>
             <% } %>
