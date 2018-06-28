@@ -27,10 +27,17 @@ define([
     'theme/js/jquery.fitvids'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
-    var term_list_page_id = 98;
+    /**
+     * START TERM LIST TUTORIAL CODE
+     */
+
+    /**
+     * Set the same component slug as the one defined for the term list page component in Back Office
+     */
+    var term_list_component_id = 'term-list';
 
     App.filter( 'template', function( template, current_screen ) {
-        if ( current_screen.item_id === term_list_page_id ) {
+        if ( current_screen.component_id === term_list_component_id ) {
             template = 'page-my-taxonomy-terms';
         }
         return template;
@@ -94,7 +101,7 @@ define([
     App.filter( 'make-history', function( history_action, history_stack, queried_screen, current_screen, previous_screen ) {
 
         //If coming from our "term list" screen and going to the "search" screen, consider it as a "push" in app history:
-        if( current_screen.item_id === term_list_page_id && queried_screen.component_id === 'search' ) {
+        if( current_screen.component_id === term_list_component_id && queried_screen.component_id === 'search' ) {
             history_action = 'push';
         }
 
@@ -104,15 +111,19 @@ define([
     //Adjust app screen transition for our search screen:
     App.filter( 'transition-direction', function ( direction, current_screen, queried_screen ) {
         //If coming from "term list" screen and going to a "search" screen, consider it as a "next screen" transition:
-        if ( current_screen.item_id == term_list_page_id && queried_screen.component_id === 'search' ) {
+        if ( current_screen.component_id === term_list_component_id && queried_screen.component_id === 'search' ) {
             direction = 'next-screen';
         } 
         //If coming back from "search" screen to the "term list" screen, consider it as a "previous screen" transition:
-        else if ( current_screen.component_id === 'search' && queried_screen.item_id == term_list_page_id ) {
+        else if ( current_screen.component_id === 'search' && queried_screen.component_id == term_list_component_id ) {
             direction = 'previous-screen';
         }
         return direction;
     } );
+
+    /**
+     * END TERM LIST TUTORIAL CODE
+     */
 
 
     /*

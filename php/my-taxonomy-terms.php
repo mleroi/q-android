@@ -3,8 +3,8 @@
 add_filter( 'wpak_page_data', 'wpak_add_page_taxonomy_terms', 10, 3 );
 function wpak_add_page_taxonomy_terms( $post_data, $post, $component ) {
     
-    //When sending data for our page with ID = 98
-    if ( $post->ID === 98 ) {
+    //When sending data for our "Term list" page component
+    if ( $component->slug === 'term-list' ) {
 
         //Retrieve the terms for the taxonomy 'category'
         //(Replace 'category' by your own custom taxonomy)
