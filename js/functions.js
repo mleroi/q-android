@@ -39,10 +39,10 @@ define([
 	if ( view_template === 'home') { //Don't need .html here
 
 		//Get blog posts from our "blog" component and keep only 3 of them to display in template:
-		template_args.blog_posts = _.last( TemplateTags.getComponent('blog').view_data.posts.toJSON(), 3 );
+		template_args.blog_posts = _.first( TemplateTags.getComponent('blog').view_data.posts.toJSON(), 3 );
 
 		//Same with tutorials posts, from our "tutorials" component:
-		template_args.tutorials_posts = _.last( TemplateTags.getComponent('tutorials').view_data.posts.toJSON(), 3 );
+		template_args.tutorials_posts = _.first( TemplateTags.getComponent('tutorials').view_data.posts.toJSON(), 3 );
 
 		//Now "blog_posts" and "tutorials_posts" variables are available in our home.html template :)
 	}
