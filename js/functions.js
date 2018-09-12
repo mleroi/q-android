@@ -95,7 +95,7 @@ define([
 
 		if ( is_gallery ) {
 			//Open PhotoSwipe for all images of the gallery:
-			open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
+			open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().addBack().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
 		} else {
 			//Open PhotoSwipe for the image we just touched:
 			open_with_photoswipe( $( this ) );
