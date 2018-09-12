@@ -210,17 +210,13 @@ define([
         return template_args;
         
     } );
-<<<<<<< 3818239606f69a494680a100777c0ac37ec01968
     
 	//@desc Memorize the last history action so that we can decide what to do when
 	//doing "single to single" transitions:
 	var last_history_action = '';
 	
     // @desc Catch if we're going to a single and coming from a single (it is the case when clicking on a post in the last posts widget at the bottom of a post)
-=======
-	
-	// @desc Catch if we're going to a single and coming from a single (it is the case when clicking on a post in the last posts widget at the bottom of a post)
->>>>>>> Handle images and galleries with PhotoSwipe
+
     // Update properly the history stack
     App.filter( 'make-history', function( history_action, history_stack, queried_screen, current_screen, previous_screen ) {
 
@@ -239,7 +235,6 @@ define([
 
     });
 
-<<<<<<< 3818239606f69a494680a100777c0ac37ec01968
 	// @desc Handle "single to single" transition:
 	App.filter( 'transition-direction', function( transition, current_screen, next_screen ){
 		
@@ -266,8 +261,6 @@ define([
         return transition;
     });
 
-=======
->>>>>>> Handle images and galleries with PhotoSwipe
     /*
      * Actions
      */
