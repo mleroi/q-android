@@ -61,6 +61,9 @@ function wpak_handle_forms_submit( $service_answer, $query_params ) {
 
                 wp_mail( $mail_to, $subject, $body );
 
+                //If you need to do other treatments (save form data in database, etc)
+                //you can do it here
+
                 //Tell the app that everything went ok
                 $result['ok'] = 1;
 

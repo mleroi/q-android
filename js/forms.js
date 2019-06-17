@@ -7,6 +7,10 @@ define([
     'core/theme-app',
     ], function($,App) {
 
+    //Create a custom app screen called "contact" associated to template "contact.html", where the contact form is implemented.
+    //We also add a link to this contact screen in app menu (see menu.html template).
+    App.addCustomRoute( 'contact', 'contact' );
+
     //Define forms that will be used in the app, along with their corresponding field names.
     //Forms (HTML) must also be defined in app templates with class="app-form",
     //and are handled on server side in php/forms.php.
@@ -25,10 +29,6 @@ define([
             }
         }
     };
-
-    //Create a custom app screen called "contact" associated to template "contact.html", where the contact form is implemented.
-    //We also add a link to this contact screen in app menu (see menu.html template).
-    App.addCustomRoute( 'contact', 'contact' );
 
     /*************************************************************
      * You shouldn't have to modify what follows
