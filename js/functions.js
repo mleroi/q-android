@@ -27,18 +27,90 @@ define([
     'theme/js/jquery.fitvids'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
+    /*
+     * Social sharing
+     */
+
+    App.on( 'screen:showed',function( current_screen,view ){
+
+        var currentScreenObject = App.getCurrentScreenObject();
+
+        if (current_screen.screen_type == "single") {
+
+           $( '#share-button' ).attr( 'data-url', currentScreenObject.permalink );
+           $( '#share-button' ).attr( 'data-title', currentScreenObject.title );
+           $( '#share-button' ).attr( 'data-thumbnail', currentScreenObject.thumbnail && currentScreenObject.thumbnail.src ? currentScreenObject.thumbnail.src : '' );
+
+        }
+
+    });
+
+    function shareButtonTapOff( e ) {
+
+        e.preventDefault();
+
+        // Get data to be shared
+
+        var shareUrl = '';
+        if ( $( this ).attr( 'data-url' ) != '' ) {
+            shareUrl = $( this ).attr( 'data-url' );
+        } else {
+            shareUrl = null;
+        }
+
+        var shareMessage = "I've just discovered a great article and I think it may interest you";
+
+        if ( shareUrl != null ) {
+            shareMessage += ": " + shareUrl;
+        } else {
+            shareMessage += '.';
+        }
+
+        var shareSubject = '';
+        if ( $( this ).attr( 'data-title' ) != '' ) {
+            shareSubject = $( this ).attr( 'data-title' );
+        } else {
+            shareSubject = null;
+        }
+
+        var shareThumbnail = '';
+        if ( $( this ).attr( 'data-thumbnail' ) != '' ) {
+            shareThumbnail = $( this ).attr( 'data-thumbnail' );
+        } else {
+            shareThumbnail = null;
+        }
+
+        // Launch OS sharing center (and check if the necessary Phonegap plugin is available - https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin/)
+        try {
+
+            window.plugins.socialsharing.share(
+                shareMessage, // Message
+                shareSubject, // Subject
+                shareThumbnail, // Image
+                shareUrl, // Link
+                function( result ) { alert( 'Success' ); }, // Success feedback
+                function( result ) { alert( 'Failed' ); }  // Error feedback
+            );
+
+        } catch( err ) {
+            console.log( "Sharing plugin is not available - you're probably in the browser" );
+        }
+
+    }
+
+    $( "#app-layout" ).on( "touchend", "#share-button", shareButtonTapOff );
 
     /*
      * App's parameters
      */
-    
+
     App.setParam( 'go-to-default-route-after-refresh', false ); // Don't automatically show default screen after a refresh
     App.setParam( 'custom-screen-rendering', true ); // Don't use default transitions and displays for screens
 
     /*
      * Init
      */
-    
+
     if ( Config.app_platform !== 'pwa' ) {
         /**
          * @desc Customizing the status bar to match the theme, relies on // https://github.com/apache/cordova-plugin-statusbar
