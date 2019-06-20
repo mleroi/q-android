@@ -76,8 +76,8 @@ define([
                 shareSubject, // Subject
                 shareThumbnail, // Image
                 shareUrl, // Link
-                function( result ) { //alert( 'Success' ); }, // Success feedback
-                function( result ) { //alert( 'Failed' ); }  // Error feedback
+                function( result ) { /*alert( 'Success' );*/ }, // Success feedback
+                function( result ) { /*alert( 'Failed' );*/ }  // Error feedback
             );
 
         } catch( err ) {
