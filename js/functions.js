@@ -51,33 +51,21 @@ define([
 
         // Get data to be shared
 
-        var shareUrl = '';
+        var shareUrl = null;
         if ( $( this ).attr( 'data-url' ) != '' ) {
             shareUrl = $( this ).attr( 'data-url' );
-        } else {
-            shareUrl = null;
         }
 
-        var shareMessage = "I've just discovered a great article and I think it may interest you";
+        var shareMessage = "I've just discovered a great article and I think it may interest you.";
 
-        if ( shareUrl != null ) {
-            shareMessage += ": " + shareUrl;
-        } else {
-            shareMessage += '.';
-        }
-
-        var shareSubject = '';
+        var shareSubject = null;
         if ( $( this ).attr( 'data-title' ) != '' ) {
             shareSubject = $( this ).attr( 'data-title' );
-        } else {
-            shareSubject = null;
         }
 
-        var shareThumbnail = '';
+        var shareThumbnail = null;
         if ( $( this ).attr( 'data-thumbnail' ) != '' ) {
             shareThumbnail = $( this ).attr( 'data-thumbnail' );
-        } else {
-            shareThumbnail = null;
         }
 
         // Launch OS sharing center (and check if the necessary Phonegap plugin is available - https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin/)
@@ -88,8 +76,8 @@ define([
                 shareSubject, // Subject
                 shareThumbnail, // Image
                 shareUrl, // Link
-                function( result ) { alert( 'Success' ); }, // Success feedback
-                function( result ) { alert( 'Failed' ); }  // Error feedback
+                function( result ) { //alert( 'Success' ); }, // Success feedback
+                function( result ) { //alert( 'Failed' ); }  // Error feedback
             );
 
         } catch( err ) {
