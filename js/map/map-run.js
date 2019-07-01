@@ -1,12 +1,15 @@
 define([
     'jquery',
     'core/theme-app',
-    'theme/js/map/map-model'
-    ], function($,App,MapModel) {
+    'theme/js/map/map-engine-leaflet'
+    ], function($,App,Map) {
 
-        var MyMap = new MapModel({
+        var MyMap = new Map({
             id:"map",
-            center: { lat: 45.7640, lng: 4.8357 }
+            default_data: {
+                center: { lat: 45.7640, lng: 4.8357 },
+                zoom: 6
+            }
         });
 
         App.addCustomRoute( 'map', 'map' );
@@ -17,12 +20,15 @@ define([
                 $('#map').height( $('#map-screen').height() );
                 MyMap.update();
             }
+
         });
 
         App.on( 'screen:leave', function ( current_screen, queried_screen  ) {
+
             if ( current_screen.item_id === 'map' ) {
                 MyMap.remove();
             }
+
         } );
 
 });
