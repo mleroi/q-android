@@ -11,6 +11,29 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Copyright: 2016 Uncategorized Creations
 -->
 
+**Q for Android - Multi-Languages demo**
+
+This version of Q-android shows a way of adding multi-languages feature to an app.
+
+This is not bound to any WordPress multi-languages plugin in particular, this only handles language choice and switch in app, but content translations must be set depending on which translation plugin is used on your website (see php/languages.php file info hereunder).
+
+What is implemented:
+* when starting the app, a language choice form is displayed
+* once the user has chosen a language he can read app content in this language
+* the user can change his preferred language by going to a specific "language settings" screen.
+
+How to install:
+* set available languages and content translations in [this-theme]/php/languages.php using the translation functions of the WordPress language plugin used on your website,
+* activate this theme for your app
+* that's it, run your app, choose a language and enjoy translated content
+
+See the following files for more information (see comments in files):
+* php/langages.php: server side languages configuration: **this is where you can define which language to display in your app** and **set content translations depending on which WordPress translation plugin is used on your website**
+* languages/js/*: Javascript files related to languages integration (languages/js/app.js has to be included in theme's functions.js)
+* languages/templates/*: html templates used to render languages related screens
+
+_End of instuctions about languages feature demo. What follows is general information about Q for Android theme._
+
 **Q for Android** is a demo theme for mobile apps and Progressive Web Apps (PWA) built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
 
 **It is installed by default with the WP-AppKit plugin. However, you will be able to download a fresh installation from this repository**

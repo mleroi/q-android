@@ -1,0 +1,29 @@
+<!--
+This is the template used to render the language settings screen, where the user can change his preferred language.
+-->
+
+<div id="content" class="content single-template">
+
+    <div class="post-title">
+
+        <h1>Language Settings</h1>
+
+    </div>
+
+    <div id="single-content" class="single-content">
+
+        <form id="language-choice-form">
+            <label>Please choose a language:</label>
+            <select id="language-select">
+                <% _.each( available_languages, function( language, code ){ %>
+                    <option value="<%= code %>" <%= current_language == code ? 'selected' : '' %>><%= language.label %></option>
+                <% }); %>
+            </select>
+            <input type="submit" value="OK">
+        </form>
+
+        <p id="language-choice-result"></p>
+
+	</div>
+
+</div>

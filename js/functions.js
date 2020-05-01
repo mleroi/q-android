@@ -24,21 +24,22 @@ define([
     'root/config',
     'theme/js/moment.min',
     'theme/js/velocity.min',
-    'theme/js/jquery.fitvids'
+    'theme/js/jquery.fitvids',
+    'theme/languages/js/app'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
 
     /*
      * App's parameters
      */
-    
+
     App.setParam( 'go-to-default-route-after-refresh', false ); // Don't automatically show default screen after a refresh
     App.setParam( 'custom-screen-rendering', true ); // Don't use default transitions and displays for screens
 
     /*
      * Init
      */
-    
+
     if ( Config.app_platform !== 'pwa' ) {
         /**
          * @desc Customizing the status bar to match the theme, relies on // https://github.com/apache/cordova-plugin-statusbar
