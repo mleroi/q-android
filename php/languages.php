@@ -2,7 +2,8 @@
 /**
  * Server side languages configuration for WP-AppKit apps
  *
- * SET LANGUAGES OPTIONS FOR YOUR APP HERE IN add_languages_config()
+ * - SET LANGUAGES OPTIONS FOR YOUR APP HERE: see add_languages_config()
+ * - ALSO SET POST TRANSLATIONS (TITLE, CONTENT etc) according to the WordPress multi-languages plugin used on your website: see add_post_translations()
  */
 
 /**
@@ -31,23 +32,23 @@ function add_languages_config ( $app_options, $app_id ) {
 add_filter( 'wpak_post_data', 'add_post_translations', 10, 3 );
 function add_post_translations ( $post_data, $post, $component ) {
 
-    //For each post add translations for its title and content.
+    //For each post, add translations for its title and content.
     //We use fake test data here simply pre-fixing content by the language name.
-    //To implement this for real, use the post translation function of the translation plugin that
+    //To implement this for real, use the post translation function of the multi-languages plugin that
     //you are using on your website.
 
     $post_data['translations'] = [
         'en' => [
-            'content' => '<p>English!</p> '. $post_data['content'],
-            'title' => 'English! '. $post_data['title']
+            'content' => '<p>English!</p> '. $post_data['content'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
+            'title' => 'English! '. $post_data['title'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
         ],
         'es' => [
-            'content' => '<p>Espanol!</p> '. $post_data['content'],
-            'title' => 'Espanol! '. $post_data['title']
+            'content' => '<p>Espanol!</p> '. $post_data['content'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
+            'title' => 'Espanol! '. $post_data['title'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
         ],
         'fr' => [
-            'content' => '<p>Français!</p> '. $post_data['content'],
-            'title' => 'Français! '. $post_data['title']
+            'content' => '<p>Français!</p> '. $post_data['content'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
+            'title' => 'Français! '. $post_data['title'], //SET TRANSLATION FROM WORDPRESS MULTI-LANG PLUGIN
         ],
     ];
 

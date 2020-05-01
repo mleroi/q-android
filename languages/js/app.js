@@ -49,7 +49,7 @@ define([
         var chosen_language = $('#language-select').val();
         Languages.setCurrentLanguage(chosen_language);
 
-        //Display a confirmation text (customize this message as needed):
+        //Display a confirmation text (CUSTOMIZE THIS MESSAGE AS NEEDED):
         $('#language-choice-result').text("Thanks, enjoy app content in "+ Languages.getCurrentLanguageData('label') +"!");
     } );
 
