@@ -15,7 +15,7 @@ Copyright: 2016 Uncategorized Creations
 
 This version of Q-android shows a way of adding multi-languages feature to an app.
 
-This is not bound to any WordPress multi-languages plugin in particular, this only handles language choice and switch in app, but content translations must be set depending on which translation plugin is used on your website (see php/languages.php file info hereunder).
+This is not bound to any WordPress multi-languages plugin in particular, this only handles language choice and language switch in app, but content translations must be set depending on which translation plugin is used on your website (see php/languages.php file info hereunder).
 
 What is implemented:
 * when starting the app, a language choice form is displayed
