@@ -20,13 +20,14 @@ This is not bound to any WordPress multi-languages plugin in particular, this on
 What is implemented:
 * when starting the app, a language choice form is displayed
 * once the user has chosen a language he can read app content in this language
-* the user can change his preferred language by going to a specific "language settings" screen.
+* the user can change his preferred language by going to a specific "language settings" screen that is added to the app's menu.
 
 How to install:
 * set available languages and content translations in [this-theme]/php/languages.php using the translation functions of the WordPress language plugin used on your website,
 * clone or download the present repository and branch (https://github.com/mleroi/q-android/tree/feat-languages) into your wp-content/themes-wp-appkit/ directory
 * then activate this theme for your app
 * that's it, run your app, choose a language and enjoy translated content
+* you can change the preferred language by going to the "Languages settings" screen that you can find in app's menu.
 
 See the following files for more information (see comments in files):
 * php/langages.php: server side languages configuration: **this is where you can define which language to display in your app** and **set content translations depending on which WordPress translation plugin is used on your website**
