@@ -32,6 +32,11 @@ See the following files for more information (see comments in files):
 * languages/js/*: Javascript files related to languages integration (languages/js/app.js has to be included in theme's functions.js)
 * languages/templates/*: html templates used to render languages related screens
 
+If you want to add (and then customize) this multi languages feature to your own WP-AppKit theme:
+* copy the languages directory into your own theme
+* copy the php/languages.php file into your own theme (and edit this file to set your own languages config)
+* require "languages/js/app" in the js/functions.js file of your theme (see [js/functions.js](./js/functions.js) of this theme to see how)
+
 _End of instuctions about languages feature demo. What follows is general information about Q for Android theme._
 
 **Q for Android** is a demo theme for mobile apps and Progressive Web Apps (PWA) built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
