@@ -23,8 +23,8 @@ What is implemented:
 * the user can change his preferred language by going to a specific "language settings" screen that is added to the app's menu.
 
 How to install:
-* set available languages and content translations in [this-theme]/php/languages.php using the translation functions of the WordPress language plugin used on your website,
 * clone or download the present repository and branch (https://github.com/mleroi/q-android/tree/feat-languages) into your wp-content/themes-wp-appkit/ directory
+* set available languages and content translations in [this-theme]/php/languages.php using the translation functions of the WordPress language plugin used on your website,
 * then activate this theme for your app
 * that's it, run your app, choose a language and enjoy translated content
 * you can change the preferred language by going to the "Languages settings" screen that you can find in app's menu.
