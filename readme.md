@@ -30,7 +30,7 @@ How to install:
 * you can change the preferred language by going to the "Languages settings" screen that you can find in app's menu.
 
 See the following files for more information (see comments in files):
-* php/langages.php: server side languages configuration: **this is where you can define which language to display in your app** and **set content translations depending on which WordPress translation plugin is used on your website**
+* php/langages.php: server side languages configuration: **this is where you can define which language to display in your app** and **set content translations depending on which WordPress multi-languages plugin is used on your website**
 * languages/js/*: Javascript files related to languages integration (languages/js/app.js has to be included in theme's functions.js)
 * languages/templates/*: html templates used to render languages related screens
 
