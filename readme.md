@@ -35,7 +35,7 @@ See the following files for more information (see comments in files):
 If you want to add (and then customize) this multi languages feature to your own WP-AppKit theme:
 * copy the languages directory into your own theme
 * copy the php/languages.php file into your own theme (and edit this file to set your own languages config)
-* require "languages/js/app" in the js/functions.js file of your theme (see [js/functions.js](./js/functions.js) of this theme to see how)
+* require "theme/languages/js/app" as a dependency in the js/functions.js file of your theme (see [js/functions.js](./js/functions.js#L28) of this theme to see how)
 
 _End of instuctions about languages feature demo. What follows is general information about Q for Android theme._
 
