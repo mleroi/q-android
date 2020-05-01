@@ -35,7 +35,7 @@ function add_post_translations ( $post_data, $post, $component ) {
     //For each post, add translations for its title and content.
     //We use fake test data here simply pre-fixing content by the language name.
     //To implement this for real, use the post translation function of the multi-languages plugin that
-    //you are using on your website.
+    //you are using on your website (use $post->ID to retrieve the translation of the current post).
 
     $post_data['translations'] = [
         'en' => [

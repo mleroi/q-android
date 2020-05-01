@@ -1,5 +1,5 @@
 <!--
-Theme Name: Q for Android
+Theme Name: Q for Android (Multi-Languages demo)
 Description:  A clean and simple Android app news theme featuring: back button, comments, content refresh, custom post types, embeds, infinite list, latest posts, native sharing, network detection, off-canvas menu, offline content, pages, posts, pull to refresh, responsive, status bar, touch, transitions
 Version: 1.2.1
 Theme URI: https://github.com/uncatcrea/q-android
@@ -24,7 +24,8 @@ What is implemented:
 
 How to install:
 * set available languages and content translations in [this-theme]/php/languages.php using the translation functions of the WordPress language plugin used on your website,
-* activate this theme for your app
+* clone or download the present repository and branch (https://github.com/mleroi/q-android/tree/feat-languages) into your wp-content/themes-wp-appkit/ directory
+* then activate this theme for your app
 * that's it, run your app, choose a language and enjoy translated content
 
 See the following files for more information (see comments in files):
