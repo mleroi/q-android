@@ -11,6 +11,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Copyright: 2016 Uncategorized Creations
 -->
 
+**Q for Android (User Authentication Demo)** is a special version of default WP-AppKit theme "Q for Android", that implements WordPress user login in WP-AppKit apps and a post access restriction only allowing logged in users to view post content in the app.
+
+See the _authentication_ directory's readme for detailed implementation informations of the authentication feature and inspiration about how to add the login feature into your own WP-AppKit theme in your own customized way.
+
+_END OF USER AUTHENTICATION DEMO SPECIFIC INFO_
+
 **Q for Android** is a demo theme for mobile apps and Progressive Web Apps (PWA) built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
 
 **It is installed by default with the WP-AppKit plugin. However, you will be able to download a fresh installation from this repository**
