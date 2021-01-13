@@ -118,6 +118,17 @@ a {
     background-color: #FCFCFC;
 }
 
+#app-menu .app-version{
+    position:absolute;
+    bottom:0;
+    font-size:14px;
+    height:48px;
+    line-height:48px;
+    padding:0px
+    16px 0px 16px;
+    color:rgba(0,0,0,.87)
+}
+
 /* Encloses nav bar, content and toolbar  */
 #app-canvas {
     position: absolute;
@@ -125,7 +136,7 @@ a {
     left: 0px;
     bottom: 0px;
     width: 100%;
-    z-index: 10; /* Positionned above the app's menu / z-index relative to #app-layout */
+    z-index: 10; /* Positioned above the app's menu / z-index relative to #app-layout */
     overflow: hidden;
     -webkit-backface-visibility: hidden;
     box-shadow: -2px 0px 5px rgba(0,0,0,0.26);
@@ -211,7 +222,7 @@ a {
     left: 0px;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-image:url('../img/menu-icon.svg');	
+	background-image:url('../img/menu-icon.svg');
     background-size: 24px 24px;
 	width:48px;
 	height:48px;
@@ -229,7 +240,7 @@ a {
 	right: 0px;
     top: 0px;
 	background-repeat: no-repeat;
-	background-position: center;	
+	background-position: center;
 	width:48px;
 	height:48px;
 	background-image:url('../img/refresh-icon.svg');
@@ -243,7 +254,7 @@ a {
 	right: 0px;
     top: 0px;
 	background-repeat: no-repeat;
-	background-position: center;	
+	background-position: center;
 	-webkit-animation: refresh-effect 1s infinite;
 	width:48px;
 	height:48px;
@@ -627,3 +638,31 @@ a {
         transform: scale(2.5);
     }
 }
+
+
+/**
+* Favorites
+*/
+
+.favorite-toggle {
+	position: absolute;
+  right: 10px;
+  top: 15px;
+  fill: currentColor;
+  color: #333;
+  width: 22px;
+  height: 22px;
+  margin: 10px;
+}
+
+.favorite-star {
+	fill: currentColor;
+	color: #333;
+	width:22px;
+	height:22px;
+}
+
+.is-favorite .favorite-star {
+	color: #FCC419;
+}
+
