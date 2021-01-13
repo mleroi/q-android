@@ -5,7 +5,7 @@
  * @param $post
  * @param $component
  */
-function wpak_add_home_custom_data( $post_data, $post, $component ) {
+function wpak_add_custom_data( $post_data, $post, $component ) {
 
     // Add subhead. Expected as a post custom field.
     // Usage in app's templates: <%= post.subhead %>
@@ -27,5 +27,5 @@ function wpak_add_home_custom_data( $post_data, $post, $component ) {
 
 }
 
-add_filter( 'wpak_post_data', 'wpak_add_home_custom_data', 10, 3 );
+add_filter( 'wpak_post_data', 'wpak_add_custom_data', 10, 3 );
 ?>

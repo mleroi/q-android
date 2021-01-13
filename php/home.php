@@ -2,7 +2,7 @@
 /*
  * Add thumbnail size of featured image to display in home page lists
  */
-function wpak_add_custom_data( $post_data, $post, $component ) {
+function wpak_add_home_custom_data( $post_data, $post, $component ) {
 
     // Add post thumbnail caption.
     // Usage in app's templates: <%= post.thumbnail.thumb %>
@@ -21,4 +21,4 @@ function wpak_add_custom_data( $post_data, $post, $component ) {
 
 }
 
-add_filter( 'wpak_post_data', 'wpak_add_custom_data', 10, 3 );
+add_filter( 'wpak_post_data', 'wpak_add_home_custom_data', 10, 3 );
