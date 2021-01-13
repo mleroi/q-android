@@ -5,25 +5,25 @@
 -->
 
 <div id="content-home" class="content list-template">
-    
+
 	<h2>Blog</h2>
 	<% if( blog_posts.length ){ %>
 	<ul>
 		<% _.each( blog_posts, function( post ){ %>
 			<li class="has-ripple-feedback">
-				
 
-					<% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+
+					<% if( post.thumbnail && post.thumbnail.src && post.thumbnail.src.length && post.thumbnail.thumb ){ %>
 
                         <img class="content-thumbnail" src="<%= post.thumbnail.thumb %>" onerror="displayDefaultImage(this);" />
 
-                    <% } %>	
-					
+                    <% } %>
+
 					<h3><a href="<%= TemplateTags.getPostLink( post.id, 'posts' ) %>"><%= post.title %></a></h3>
-                        
-				
+
+
 			</li>
-		<% }); %>  
+		<% }); %>
 	</ul>
 	<% }else{ %>
 		<div class='content-message'>No Culture post found</div>
@@ -36,20 +36,20 @@
 				<li class="has-ripple-feedback">
 
 
-						<% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+						<% if( post.thumbnail && post.thumbnail.src && post.thumbnail.src.length && post.thumbnail.thumb ){ %>
 
 							<img class="content-thumbnail" src="<%= post.thumbnail.thumb %>" onerror="displayDefaultImage(this);" />
 
-						<% } %>	
+						<% } %>
 
 						<h3><a href="<%= TemplateTags.getPostLink( post.id, 'posts' ) %>"><%= post.title %></a></h3>
 
 
 				</li>
-			<% }); %>  
+			<% }); %>
 		</ul>
 	<% }else{ %>
 		<div class='content-message'>No Travel post found</div>
 	<% } %>
-        
+
 </div>
