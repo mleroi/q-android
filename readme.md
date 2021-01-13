@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Copyright: 2016 Uncategorized Creations
 -->
 
-Example of the "Q for android" modified to display a **custom home page** in the app, as detailed in [this tutorial](https://uncategorized-creations.com/3500/create-a-custom-homepage/).
+Example of the "Q for android" theme modified to display a **custom home page** in the app, as detailed in [this tutorial](https://uncategorized-creations.com/3500/create-a-custom-homepage/).
 
 **Q for Android** is a demo theme for mobile apps and Progressive Web Apps (PWA) built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
 
