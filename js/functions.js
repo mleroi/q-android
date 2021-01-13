@@ -211,7 +211,6 @@ define([
 
         // Get the direction keyword from current screen and  previous screen
         var direction = App.getTransitionDirection( current_screen, next_screen );
-        console.log(direction);
         switch ( direction ) {
             case 'next-screen': // Archive to single
                 transition_next_screen($wrapper, $current, $next, current_screen, next_screen, $deferred);
