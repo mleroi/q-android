@@ -4,7 +4,7 @@
  */
 function wpak_add_home_custom_data( $post_data, $post, $component ) {
 
-    // Add post thumbnail caption.
+    // Add post featured image in thumbnail size.
     // Usage in app's templates: <%= post.thumbnail.thumb %>
     $thumbnail_id = get_post_thumbnail_id( $post->ID );
     if ( $thumbnail_id ) {
